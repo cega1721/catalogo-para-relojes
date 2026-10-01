@@ -31,6 +31,7 @@
             <nav class="navegacion">
                 <a href="#inicio">Inicio</a>
                 <a href="#catalogo">Catálogo</a>
+                <a href="#videos">Videos</a>
                 <a href="#contacto">Contacto</a>
             </nav>
 
@@ -40,6 +41,16 @@
                 type="button"
             >
                 ♥ <span id="contadorFavoritos">0</span>
+            </button>
+
+            <button
+                class="btn-tema"
+                id="btnTema"
+                type="button"
+                aria-label="Activar modo oscuro"
+                title="Cambiar tema"
+            >
+                🌙
             </button>
 
         </div>
@@ -82,6 +93,252 @@
             </div>
 
         </section>
+
+        <!-- =========================
+     CARRUSEL DESTACADO
+========================== -->
+
+<section class="carrusel-destacado">
+
+    <div class="contenedor">
+
+        <div class="titulo-seccion">
+
+            <span>COLECCIÓN DESTACADA</span>
+
+            <h2>
+                Descubre nuestros relojes
+            </h2>
+
+            <p>
+                Conoce algunos de nuestros modelos destacados.
+            </p>
+
+        </div>
+
+
+        <div class="carrusel">
+
+            <!-- BOTÓN ANTERIOR -->
+
+            <button
+                class="carrusel-btn carrusel-anterior"
+                id="carruselAnterior"
+                type="button"
+                aria-label="Reloj anterior"
+            >
+                ←
+            </button>
+
+
+            <!-- IMAGEN -->
+
+            <div class="carrusel-imagen-contenedor">
+
+                <img
+                    id="carruselImagen"
+                    src=""
+                    alt="Reloj destacado"
+                >
+
+            </div>
+
+
+            <!-- INFORMACIÓN -->
+
+            <div
+                class="carrusel-info"
+                id="carruselInfo"
+            >
+
+                <span
+                    class="carrusel-categoria"
+                    id="carruselCategoria"
+                >
+                </span>
+
+                <h3 id="carruselNombre">
+                </h3>
+
+                <p
+                    class="carrusel-referencia"
+                    id="carruselReferencia"
+                >
+                </p>
+
+                <p
+                    class="carrusel-precio"
+                    id="carruselPrecio"
+                >
+                </p>
+
+                <button
+                    class="btn-carrusel-detalle"
+                    id="carruselDetalle"
+                    type="button"
+                >
+                    Ver detalles
+                </button>
+
+            </div>
+
+
+            <!-- BOTÓN SIGUIENTE -->
+
+            <button
+                class="carrusel-btn carrusel-siguiente"
+                id="carruselSiguiente"
+                type="button"
+                aria-label="Siguiente reloj"
+            >
+                →
+            </button>
+
+        </div>
+
+           <!-- INDICADORES -->
+
+        <div
+            class="carrusel-indicadores"
+            id="carruselIndicadores"
+        >
+        </div>
+
+    </div>
+
+</section>
+
+        
+<!-- =========================
+     SECCIÓN DE VIDEOS
+========================== -->
+
+<section class="videos-seccion" id="videos">
+
+    <div class="contenedor">
+
+        <div class="titulo-seccion">
+
+            <span>CONOCE NUESTRA COLECCIÓN</span>
+
+            <h2>
+                Mira nuestros relojes en acción
+            </h2>
+
+            <p>
+                Descubre los detalles, diseños y acabados
+                de nuestros modelos.
+            </p>
+
+        </div>
+
+
+        <div class="videos-grid">
+
+            <!-- VIDEO 1 -->
+
+            <article class="video-card">
+
+                <div class="video-contenedor">
+
+                    <video muted preload="metadata" playsinline poster="assets/img/relojeria-para-caballero/reloj-para-hombre-4.jpeg" > 
+
+                    <source src="assets/videos-catalogo-relojes/video-relojeria-1.mp4" 
+                        
+                    type="video/mp4" > Tu navegador no soporta la reproducción de videos. 
+                    
+                    </video>
+
+                </div>
+
+                <div class="video-info">
+
+                    <h3>
+                        Detalles de nuestra colección
+                    </h3>
+
+                    <p>
+                        Conoce uno de nuestros modelos
+                        más destacados.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 2 -->
+
+            <article class="video-card">
+
+                <div class="video-contenedor">
+
+                    <video muted preload="metadata" playsinline poster="assets/img/relojeria-para-caballero/reloj-para-hombre-2.jpeg" > 
+
+                    <source src="assets/videos-catalogo-relojes/video-relojeria-2.mp4" 
+                        
+                    type="video/mp4" > Tu navegador no soporta la reproducción de videos. 
+                    
+                    </video>
+
+                </div>
+
+                <div class="video-info">
+
+                    <h3>
+                        Diseño y elegancia
+                    </h3>
+
+                    <p>
+                        Observa los detalles de nuestros relojes.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 3 -->
+
+            <article class="video-card">
+
+                <div class="video-contenedor">
+
+                   <video muted preload="metadata" playsinline poster="assets/img/relojeria-para-caballero/reloj-para-hombre-6.jpeg" > 
+
+                    <source src="assets/videos-catalogo-relojes/video-relojeria-3.mp4" 
+                        
+                    type="video/mp4" > Tu navegador no soporta la reproducción de videos. 
+                    
+                    </video>
+
+                </div>
+
+                <div class="video-info">
+
+                    <h3>
+                        Calidad y acabados
+                    </h3>
+
+                    <p>
+                        Mira de cerca uno de nuestros modelos.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+     
+
+
 
 
         <!-- =========================
@@ -296,6 +553,40 @@
 
     </div>
 
+
+
+    <script>
+        // ========================================
+        // MODO OSCURO
+        // ========================================
+
+        const btnTema = document.getElementById("btnTema");
+        const temaGuardado = localStorage.getItem("temaCatalogo");
+
+        function aplicarTema(tema) {
+            const modoOscuro = tema === "oscuro";
+
+            document.body.classList.toggle("modo-oscuro", modoOscuro);
+
+            if (btnTema) {
+                btnTema.textContent = modoOscuro ? "☀️" : "🌙";
+                btnTema.setAttribute(
+                    "aria-label",
+                    modoOscuro ? "Activar modo claro" : "Activar modo oscuro"
+                );
+            }
+        }
+
+        aplicarTema(temaGuardado === "oscuro" ? "oscuro" : "claro");
+
+        btnTema.addEventListener("click", () => {
+            const oscuro = document.body.classList.toggle("modo-oscuro");
+            const tema = oscuro ? "oscuro" : "claro";
+
+            localStorage.setItem("temaCatalogo", tema);
+            aplicarTema(tema);
+        });
+    </script>
 
     <script src="js/app.js"></script>
 

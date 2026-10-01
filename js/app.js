@@ -13,7 +13,7 @@ const relojes = [
         tipo: "Clásico",
         precio: 189000,
         imagen:
-            "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
+            "assets/img/relojeria-para-caballero/reloj-para-hombre-14.jpeg",
         descripcion:
             "Reloj clásico de diseño elegante, ideal para uso diario y ocasiones especiales.",
         caracteristicas: [
@@ -31,7 +31,7 @@ const relojes = [
         tipo: "Elegante",
         precio: 245000,
         imagen:
-            "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=800&q=80",
+            "assets/img/relojeria-para-caballero/reloj-para-hombre-2.jpeg",
         descripcion:
             "Un diseño elegante pensado para quienes buscan un estilo sofisticado.",
         caracteristicas: [
@@ -49,7 +49,7 @@ const relojes = [
         tipo: "Deportivo",
         precio: 159000,
         imagen:
-            "https://images.unsplash.com/photo-1533139502658-0198f920d8e8?auto=format&fit=crop&w=800&q=80",
+            "assets/img/relojeria-para-caballero/reloj-para-hombre-32.jpeg",
         descripcion:
             "Reloj deportivo pensado para acompañarte durante tus actividades.",
         caracteristicas: [
@@ -67,7 +67,7 @@ const relojes = [
         tipo: "Femenino",
         precio: 219000,
         imagen:
-            "https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=800&q=80",
+            "assets/img/relojeria-para-dama/reloj-para-dama-1.jpeg",
         descripcion:
             "Diseño delicado y elegante para complementar cualquier estilo.",
         caracteristicas: [
@@ -85,7 +85,7 @@ const relojes = [
         tipo: "Casual",
         precio: 199000,
         imagen:
-            "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=800&q=80",
+            "assets/img/relojeria-para-caballero/reloj-para-hombre-21.jpeg",
         descripcion:
             "Un reloj urbano con diseño moderno para el día a día.",
         caracteristicas: [
@@ -103,7 +103,7 @@ const relojes = [
         tipo: "Premium",
         precio: 349000,
         imagen:
-            "https://images.unsplash.com/photo-1526045431048-f857369baa09?auto=format&fit=crop&w=800&q=80",
+            "assets/img/relojeria-para-caballero/reloj-para-hombre-38.jpeg",
         descripcion:
             "Modelo premium con un acabado sofisticado y una presencia destacada.",
         caracteristicas: [
@@ -143,6 +143,360 @@ const detalleProducto =
 
 const contadorFavoritos =
     document.getElementById("contadorFavoritos");
+
+
+// ========================================
+// ELEMENTOS DEL CARRUSEL
+// ========================================
+
+const carruselImagen =
+    document.getElementById("carruselImagen");
+
+const carruselCategoria =
+    document.getElementById("carruselCategoria");
+
+const carruselNombre =
+    document.getElementById("carruselNombre");
+
+const carruselReferencia =
+    document.getElementById("carruselReferencia");
+
+const carruselPrecio =
+    document.getElementById("carruselPrecio");
+
+const carruselAnterior =
+    document.getElementById("carruselAnterior");
+
+const carruselSiguiente =
+    document.getElementById("carruselSiguiente");
+
+const carruselDetalle =
+    document.getElementById("carruselDetalle");
+
+const carruselIndicadores =
+    document.getElementById("carruselIndicadores");
+
+
+// ========================================
+// ESTADO DEL CARRUSEL
+// ========================================
+
+let indiceCarrusel = 0;
+
+let intervaloCarrusel = null;
+
+
+// ========================================
+// INICIALIZAR CARRUSEL
+// ========================================
+
+function iniciarCarrusel() {
+
+    if (!relojes.length) {
+        return;
+    }
+
+
+    crearIndicadoresCarrusel();
+
+    mostrarRelojCarrusel(indiceCarrusel);
+
+    iniciarTemporizadorCarrusel();
+
+}
+
+
+// ========================================
+// MOSTRAR RELOJ
+// ========================================
+
+function mostrarRelojCarrusel(indice) {
+
+    const reloj =
+        relojes[indice];
+
+
+    if (!reloj) {
+        return;
+    }
+
+
+    carruselImagen.classList.add("fade");
+
+
+    setTimeout(() => {
+
+        carruselImagen.src =
+            reloj.imagen;
+
+        carruselImagen.alt =
+            reloj.nombre;
+
+
+        carruselCategoria.textContent =
+            reloj.tipo;
+
+
+        carruselNombre.textContent =
+            reloj.nombre;
+
+
+        carruselReferencia.textContent =
+            `Referencia: ${reloj.referencia}`;
+
+
+        carruselPrecio.textContent =
+            formatearPrecio(reloj.precio);
+
+
+        actualizarIndicadoresCarrusel();
+
+
+        carruselImagen.classList.remove("fade");
+
+    }, 800);
+
+}
+
+
+// ========================================
+// SIGUIENTE RELOJ
+// ========================================
+
+function siguienteReloj() {
+
+    indiceCarrusel++;
+
+
+    if (
+        indiceCarrusel >= relojes.length
+    ) {
+
+        indiceCarrusel = 0;
+
+    }
+
+
+    mostrarRelojCarrusel(
+        indiceCarrusel
+    );
+
+
+    reiniciarTemporizadorCarrusel();
+
+}
+
+
+// ========================================
+// RELOJ ANTERIOR
+// ========================================
+
+function anteriorReloj() {
+
+    indiceCarrusel--;
+
+
+    if (indiceCarrusel < 0) {
+
+        indiceCarrusel =
+            relojes.length - 1;
+
+    }
+
+
+    mostrarRelojCarrusel(
+        indiceCarrusel
+    );
+
+
+    reiniciarTemporizadorCarrusel();
+
+}
+
+
+// ========================================
+// TEMPORIZADOR
+// ========================================
+
+function iniciarTemporizadorCarrusel() {
+
+    intervaloCarrusel =
+        setInterval(() => {
+
+            siguienteReloj();
+
+        }, 3000);
+
+}
+
+
+// ========================================
+// REINICIAR TEMPORIZADOR
+// ========================================
+
+function reiniciarTemporizadorCarrusel() {
+
+    clearInterval(
+        intervaloCarrusel
+    );
+
+
+    iniciarTemporizadorCarrusel();
+
+}
+
+
+// ========================================
+// INDICADORES
+// ========================================
+
+function crearIndicadoresCarrusel() {
+
+    carruselIndicadores.innerHTML = "";
+
+
+    relojes.forEach(
+        (reloj, indice) => {
+
+            const indicador =
+                document.createElement("button");
+
+
+            indicador.classList.add(
+                "carrusel-indicador"
+            );
+
+
+            indicador.type = "button";
+
+
+            indicador.setAttribute(
+                "aria-label",
+                `Mostrar ${reloj.nombre}`
+            );
+
+
+            indicador.addEventListener(
+                "click",
+                () => {
+
+                    indiceCarrusel =
+                        indice;
+
+
+                    mostrarRelojCarrusel(
+                        indiceCarrusel
+                    );
+
+
+                    reiniciarTemporizadorCarrusel();
+
+                }
+            );
+
+
+            carruselIndicadores.appendChild(
+                indicador
+            );
+
+        }
+    );
+
+}
+
+
+// ========================================
+// ACTUALIZAR INDICADORES
+// ========================================
+
+function actualizarIndicadoresCarrusel() {
+
+    const indicadores =
+        document.querySelectorAll(
+            ".carrusel-indicador"
+        );
+
+
+    indicadores.forEach(
+        (indicador, indice) => {
+
+            indicador.classList.toggle(
+                "activo",
+                indice === indiceCarrusel
+            );
+
+        }
+    );
+
+}
+
+
+// ========================================
+// BOTONES DEL CARRUSEL
+// ========================================
+
+carruselSiguiente.addEventListener(
+    "click",
+    siguienteReloj
+);
+
+
+carruselAnterior.addEventListener(
+    "click",
+    anteriorReloj
+);
+
+
+// ========================================
+// VER DETALLE DESDE EL CARRUSEL
+// ========================================
+
+carruselDetalle.addEventListener(
+    "click",
+    () => {
+
+        abrirDetalle(
+            relojes[indiceCarrusel].id
+        );
+
+    }
+);
+
+
+// ========================================
+// VIDEOS - REPRODUCCIÓN AL PASAR EL PUNTERO
+// ========================================
+
+const videosCatalogo =
+    document.querySelectorAll(".video-contenedor video");
+
+
+videosCatalogo.forEach(video => {
+
+    // Reproducir al entrar con el puntero
+    video.addEventListener("mouseenter", () => {
+
+        video.currentTime = 0;
+
+        video.play().catch(() => {
+            // El navegador puede bloquear la reproducción
+            // en algunas circunstancias.
+        });
+
+    });
+
+
+    // Pausar al retirar el puntero
+    video.addEventListener("mouseleave", () => {
+
+        video.pause();
+
+        video.currentTime = 0;
+
+    });
+
+});
+
 
 
 // ========================================
@@ -603,6 +957,7 @@ document.addEventListener(
 );
 
 
+
 // ========================================
 // INICIALIZAR APLICACIÓN
 // ========================================
@@ -610,3 +965,6 @@ document.addEventListener(
 mostrarProductos(relojes);
 
 actualizarContadorFavoritos();
+
+iniciarCarrusel();
+
